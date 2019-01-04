@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="Ticket2EditDlg" widgetVar="Ticket2EditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTicket2Title}">
+            <h:form id="Ticket2EditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ticket2Controller.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTicket2Label_rollnumber}" for="rollnumber" />
+                        <p:inputText id="rollnumber" value="#{ticket2Controller.selected.rollnumber}" title="#{bundle.EditTicket2Title_rollnumber}" required="true" requiredMessage="#{bundle.EditTicket2RequiredMessage_rollnumber}"/>
+                        <p:outputLabel value="#{bundle.EditTicket2Label_name}" for="name" />
+                        <p:inputText id="name" value="#{ticket2Controller.selected.name}" title="#{bundle.EditTicket2Title_name}" required="true" requiredMessage="#{bundle.EditTicket2RequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundle.EditTicket2Label_class1}" for="class1" />
+                        <p:inputText id="class1" value="#{ticket2Controller.selected.class1}" title="#{bundle.EditTicket2Title_class1}" required="true" requiredMessage="#{bundle.EditTicket2RequiredMessage_class1}"/>
+                        <p:outputLabel value="#{bundle.EditTicket2Label_email}" for="email" />
+                        <p:inputText id="email" value="#{ticket2Controller.selected.email}" title="#{bundle.EditTicket2Title_email}" required="true" requiredMessage="#{bundle.EditTicket2RequiredMessage_email}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ticket2Controller.update}" value="#{bundle.Save}" update="display,:Ticket2ListForm:datalist,:growl" oncomplete="handleSubmit(args, 'Ticket2EditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="Ticket2EditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
